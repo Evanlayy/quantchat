@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quant Chat - AI Trading Assistant</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <audio id="scanSound" preload="auto">
+        <source src="data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjIwLjEwMAAAAAAAAAAAAAAAAP/7kGQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEluZm8AAAAPAAAABAAABPgAVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/7kGQAAANkAEAFAAAAAAANIAAAAQAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//sQZAAP8AAAaQAAAAgAAA0gAAABAAABpAAAACAAADSAAAAETEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV//sQZB4P8AAAaQAAAAgAAA0gAAABAAABpAAAACAAADSAAAAEVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV//sQZDwP8AAAaQAAAAgAAA0gAAABAAABpAAAACAAADSAAAAEVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" type="audio/mp3">
+    </audio>
+    <div class="guide-overlay" id="guideOverlay">
+        <div class="guide-popup">
+            <h2>Welcome to Chat Genie</h2>
+            <div class="guide-content">
+                <p>🤖 I'm your AI Trading Assistant</p>
+                <ul>
+                    <li>Share your trading experiences</li>
+                    <li>Get personalized feedback</li>
+                    <li>Track your trading journey</li>
+                    <li>Learn from your decisions</li>
+                </ul>
+                <p class="guide-highlight">Let's analyze your trading day together!</p>
+            </div>
+            <button class="glow-button" id="startChat">Start Trading Journey</button>
+        </div>
+    </div>
+    <div class="background-animation"></div>
+    
+    <header>
+        <div class="logo">
+            <svg class="quantum-cube" viewBox="0 0 100 100" width="40" height="40">
+                <!-- Outer cube -->
+                <path class="cube-face front" d="M25,25 L75,25 L75,75 L25,75 Z" fill="none" stroke="#00ff9d" stroke-width="1.5"/>
+                <path class="cube-face right" d="M75,25 L90,10 L90,60 L75,75" fill="none" stroke="#00ff9d" stroke-width="1.5"/>
+                <path class="cube-face top" d="M25,25 L40,10 L90,10 L75,25" fill="none" stroke="#00ff9d" stroke-width="1.5"/>
+                
+                <!-- Inner cube -->
+                <path class="cube-face inner-front" d="M35,35 L65,35 L65,65 L35,65 Z" fill="none" stroke="#00ff9d" stroke-width="1"/>
+                <path class="cube-face inner-right" d="M65,35 L80,20 L80,50 L65,65" fill="none" stroke="#00ff9d" stroke-width="1"/>
+                <path class="cube-face inner-top" d="M35,35 L50,20 L80,20 L65,35" fill="none" stroke="#00ff9d" stroke-width="1"/>
+                
+                <!-- Connecting lines -->
+                <path class="quantum-line" d="M25,25 L35,35" stroke="#00ff9d" stroke-width="0.5" opacity="0.5"/>
+                <path class="quantum-line" d="M75,25 L65,35" stroke="#00ff9d" stroke-width="0.5" opacity="0.5"/>
+                <path class="quantum-line" d="M25,75 L35,65" stroke="#00ff9d" stroke-width="0.5" opacity="0.5"/>
+                <path class="quantum-line" d="M75,75 L65,65" stroke="#00ff9d" stroke-width="0.5" opacity="0.5"/>
+                
+                <!-- Quantum particles -->
+                <circle class="particle" cx="35" cy="35" r="1.5" fill="#00ff9d">
+                    <animate attributeName="r" values="1;2;1" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="particle" cx="65" cy="35" r="1.5" fill="#00ff9d">
+                    <animate attributeName="r" values="1;2;1" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+                </circle>
+                <circle class="particle" cx="50" cy="50" r="1.5" fill="#00ff9d">
+                    <animate attributeName="r" values="1;2;1" dur="2s" begin="1s" repeatCount="indefinite"/>
+                </circle>
+                
+                <!-- Energy lines -->
+                <path class="energy-line" d="M35,35 Q50,50 65,35" stroke="#00ff9d" stroke-width="0.5" fill="none">
+                    <animate attributeName="opacity" values="0.2;1;0.2" dur="3s" repeatCount="indefinite"/>
+                </path>
+                <path class="energy-line" d="M35,65 Q50,50 65,65" stroke="#00ff9d" stroke-width="0.5" fill="none">
+                    <animate attributeName="opacity" values="0.2;1;0.2" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+                </path>
+                
+                <!-- Core glow -->
+                <circle class="core" cx="50" cy="50" r="3" fill="url(#coreGradient)">
+                    <animate attributeName="r" values="2;4;2" dur="4s" repeatCount="indefinite"/>
+                </circle>
+                
+                <!-- Gradients -->
+                <defs>
+                    <radialGradient id="coreGradient" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" style="stop-color:#00ff9d;stop-opacity:1"/>
+                        <stop offset="100%" style="stop-color:#00ff9d;stop-opacity:0"/>
+                    </radialGradient>
+                </defs>
+            </svg>
+            <h1>Quant Chat</h1>
+        </div>
+        <nav>
+            <a href="https://pump.fun/board" target="_blank">
+                <button class="glow-button buy-now">Buy Now</button>
+            </a>
+            <a href="https://x.com/QuantChat" target="_blank">
+                <button class="social-button twitter"><i class="fab fa-twitter"></i></button>
+            </a>
+            <a href="https://t.me/QuantChatAI" target="_blank">
+                <button class="social-button telegram"><i class="fab fa-telegram"></i></button>
+            </a>
+        </nav>
+    </header>
+
+    <div class="system-status">
+        <div class="status-container">
+            <div class="status-header">
+                <h2>SYSTEM STATUS</h2>
+                <div class="status-indicator"></div>
+            </div>
+            <div class="status-grid">
+                <div class="status-item glitch-text version">
+                    <span class="status-label">Version</span>
+                    <span class="status-value">0.6.9</span>
+                </div>
+                <div class="status-item glitch-text error">
+                    <span class="status-label">Core Load</span>
+                    <span class="status-value">0.13</span>
+                </div>
+                <div class="status-item glitch-text">
+                    <span class="status-label">Node Count</span>
+                    <span class="status-value">1891</span>
+                </div>
+                <div class="status-item glitch-text error-red">
+                    <span class="status-label">Risk Management</span>
+                    <span class="status-value">ERR_0x394</span>
+                </div>
+            </div>
+        </div>
+        <div class="glitch-overlay"></div>
+    </div>
+
+    <main>
+        <div class="chat-container">
+            <div class="scanning-line"></div>
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will be inserted here -->
+            </div>
+            <div class="chat-input-container">
+                <input type="text" id="userInput" placeholder="Tell me about your trading day...">
+                <button id="sendMessage" class="glow-button">Send</button>
+            </div>
+        </div>
+    </main>
+
+    <div class="roadmap">
+        <div class="roadmap-container">
+            <h2 class="roadmap-title">DEVELOPMENT ROADMAP</h2>
+            <div class="roadmap-grid">
+                <div class="roadmap-item">
+                    <div class="phase-tag">PHASE 1</div>
+                    <h3>Foundation</h3>
+                    <ul>
+                        <li>Core AI Trading Assistant deployment</li>
+                        <li>Basic pattern recognition system</li>
+                        <li>Risk management integration</li>
+                        <li>Community channel establishment</li>
+                    </ul>
+                </div>
+                <div class="roadmap-item">
+                    <div class="phase-tag">PHASE 2</div>
+                    <h3>Enhancement</h3>
+                    <ul>
+                        <li>Advanced market analysis</li>
+                        <li>Multi-timeframe support</li>
+                        <li>Custom trading strategies</li>
+                        <li>Performance tracking system</li>
+                    </ul>
+                </div>
+                <div class="roadmap-item">
+                    <div class="phase-tag">PHASE 3</div>
+                    <h3>Innovation</h3>
+                    <ul>
+                        <li>Real-time market sentiment analysis</li>
+                        <li>AI-powered trade suggestions</li>
+                        <li>Portfolio optimization</li>
+                        <li>Advanced risk calculation</li>
+                    </ul>
+                </div>
+                <div class="roadmap-item">
+                    <div class="phase-tag">PHASE 4</div>
+                    <h3>Expansion</h3>
+                    <ul>
+                        <li>Multi-exchange integration</li>
+                        <li>Mobile app deployment</li>
+                        <li>Institutional features</li>
+                        <li>Global community hub</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html> 
